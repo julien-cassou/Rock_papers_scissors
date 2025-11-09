@@ -20,40 +20,89 @@ function playGame() {
     let humanScore = 0
     let computerScore = 0
 
-    function playRound(humanChoice, computerChoice) {
-        const human = humanChoice.toLowerCase()
+    let rock = document.querySelector("#rock");
+    let paper = document.querySelector("#paper");
+    let scissors = document.querySelector("#scissors");
 
+    rock.addEventListener("click", () => {
+        playRound("rock", getComputerChoice());
+        check();
+        metAJourScore();
+        } 
+    );
+
+    paper.addEventListener("click", () => {
+        playRound("paper", getComputerChoice());
+        check();
+        metAJourScore();
+        }
+    );
+
+    scissors.addEventListener("click", () => {
+        playRound("scissors", getComputerChoice());
+        check();
+        metAJourScore();
+        }
+    );
+
+    function check() {
+        if(humanScore >= 5) {
+        let divWinner = document.createElement("div");
+        divWinner.classList.add("winner");
+        divWinner.innerHTML = "Vous avez gagné !";
+        document.querySelector("body").appendChild(divWinner);
+        rock.disabled = true;
+        paper.disabled = true;
+        scissors.disabled = true;
+        }   
+
+        if(computerScore >= 5) {
+            let divWinner = document.createElement("div");
+            divWinner.classList.add("winner");
+            divWinner.innerHTML = "Vous avez perdu !";
+            document.querySelector("body").appendChild(divWinner);
+            rock.disabled = true;
+            paper.disabled = true;
+            scissors.disabled = true;
+        }
+    }
+
+    let divScore = document.querySelector(".score");
+    function metAJourScore() {
+        divScore.innerHTML = "Humain : " + humanScore + " Bot : " + computerScore
+    }
+
+    let screen = document.querySelector(".screen");
+
+    function playRound(human, computerChoice) {
         if(human == computerChoice) {
-            console.log("Equality ! You both chose : " + human)
+            screen.innerHTML = "Equality ! You both chose : " + human;
         }
         else if(human == "rock" && computerChoice == "scissors") {
-            console.log("Win ! " + human + " beats " + computerChoice)
-            humanScore++
+            screen.innerHTML = "Win ! " + human + " beats " + computerChoice;
+            humanScore++;
         }
         else if(human == "paper" && computerChoice == "rock") {
-            console.log("Win ! " + human + " beats " + computerChoice)
-            humanScore++
+            screen.innerHTML = "Win ! " + human + " beats " + computerChoice;
+            humanScore++;
         }    
         else if(human == "scissors" && computerChoice == "paper") {
-            console.log("Win ! " + human + " beats " + computerChoice)
-            humanScore++
+            screen.innerHTML = "Win ! " + human + " beats " + computerChoice;
+            humanScore++;
         }
 
         else if(human == "paper" && computerChoice == "scissors") {
-            console.log("You lose ! " + computerChoice + " beats " + human)
-            computerScore++
+            screen.innerHTML = "You lose ! " + computerChoice + " beats " + human;
+            computerScore++;
         }
         else if(human == "rock" && computerChoice == "paper") {
-            console.log("You lose ! " + computerChoice + " beats " + human)
-            computerScore++
+            screen.innerHTML = "You lose ! " + computerChoice + " beats " + human;
+            computerScore++;
         }
         else {
-            console.log("You lose ! " + computerChoice + " beats " + human)
-            computerScore++
+            screen.innerHTML = "You lose ! " + computerChoice + " beats " + human;
+            computerScore++;
         }
-    }
-    for(let i = 0; i < 5; i++) {
-        playRound(getComputerChoice(), getHumanChoice())
     }
 }
 
