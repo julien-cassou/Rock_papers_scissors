@@ -1,0 +1,39 @@
+button {
+    background-color: rgb(169, 169, 169);
+    height: 150px;
+    width: 150px;
+    border: 1px solid transparent;
+    clip-path: polygon(
+        25% 0%, 75% 0%, 
+        100% 25%, 100% 75%, 
+        75% 100%, 25% 100%, 
+        0% 75%, 0% 25%
+    );
+}
+
+body {
+    height: 700px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.buttons {
+    width: 50%;
+    height: 150px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.screen {
+    width: 30%;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
